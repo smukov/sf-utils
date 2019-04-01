@@ -1,0 +1,15 @@
+<aura:component extends="c:qa_container">
+
+  <!-- set parent component attributes -->
+  <aura:set attribute="title" value="Sample Quick Action" />
+
+  <!-- handled events -->
+  <aura:handler name="init" value="{! this }" action="{! c.handleInit }" />
+  <aura:handler name="qaBtnClicked" event="c:qa_e_generic" action="{!c.handleQABtnClicked}" />
+
+  <!-- body -->
+  <div class="slds-align_absolute-center" style="height: 5rem;">
+    This content will be positioned in the absolute center of its container
+  </div>
+
+</aura:component>	
