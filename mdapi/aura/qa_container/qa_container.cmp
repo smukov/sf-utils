@@ -1,0 +1,48 @@
+<aura:component 
+  extends="c:base"
+  implements="force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId"
+  abstract="true" extensible="true">
+
+  <!-- external CSS -->
+  <ltng:require styles="{!$Resource.qa_stylesheet}" />
+
+  <!-- events that are fired -->
+  <aura:registerEvent name="qaBtnClicked" type="c:qa_e_generic"/>
+
+  <!-- public Attributes -->
+  <aura:attribute name="title" type="String" default="Quick Action" access="public"/>
+  <aura:attribute name="buttons" type="Map[]" default="[
+    {variant: 'neutral', name: 'Close', label: 'Close', isDisabled: false},
+    {variant: 'neutral', name: 'SaveAndNew', label: 'Save &amp; New', isDisabled: false},
+    {variant: 'brand', name: 'Save', label: 'Save', isDisabled: false}
+    ]" access="public"/>
+  
+  
+  <!-- body -->
+  <div>
+    <!-- header -->
+    <div class="slds-modal__header">
+      <h2 class="slds-text-heading--medium">{!v.title}</h2>
+    </div>
+
+    <!-- content -->
+    <div style="background: white; border-bottom-right-radius: .25rem; border-bottom-left-radius: .25rem;">
+
+      {!v.body}
+      
+      <!-- footer -->
+      <div class="modal-footer slds-modal__footer">
+        <aura:iteration items="{!v.buttons}" var="btn">
+          <lightning:button 
+            variant="{!btn.variant}" 
+            name="{!btn.name}" 
+            label="{!btn.label}" 
+            disabled="{!btn.isDisabled}"
+            onclick="{!c.handleQAButtonClicked}"/>
+        </aura:iteration>
+      </div>
+    </div>
+  </div>
+
+
+</aura:component>

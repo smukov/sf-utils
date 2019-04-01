@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
   <types>
+    <name>AuraDefinitionBundle</name>
+    <members>base</members>
+    <members>e_generic</members>
+    <members>qa_container</members>
+    <members>qa_e_generic</members>
+    <members>qa_sample</members>
+  </types>
+  <types>
     <name>ApexClass</name>
     <members>UTIL_Domain</members>
     <members>UTIL_Exceptions</members>
     <members>UTIL_String</members>
+  </types>
+  <types>
+    <name>StaticResource</name>
+    <members>qa_stylesheet</members>
   </types>
   <version>45.0</version>
 </Package>
