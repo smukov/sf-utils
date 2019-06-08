@@ -80,4 +80,57 @@ public without sharing class UTIL_String {
             return String.valueOf(rawObject);
         }
     }
+
+    /**
+     * Convert a list of Schema.SObjectField into a comma separated list of fields
+     * that can be used in a query builder.
+     *
+     * @param  fields fields to convert into comma separated string
+     * @return        comma separated list of fields
+     */
+    public static String convertFieldsToQueryString(List<Schema.SObjectField> fields){
+        if(fields == null) { throw new UTIL_Exceptions.IllegalArgumentException('fields cannot be null'); }
+        if(fields.isEmpty()) { return ' Id '; }
+        
+        String retVal = ' ';
+        for(Schema.SObjectField f : fields){
+            retVal += f.getDescribe().getName() + ', ';
+        }
+
+        return retVal.removeEnd(', ') + ' ';
+    }
+
+    /**
+     * Split the string and remove duplicate entries.
+     *
+     * @param  stringToSplit    String to split
+     * @param  splitter         String to split with
+     * @param  deleteWhitespace Should the string be trimmed and all whitespaces within it removed?
+     * @return                  Set of string tokens
+     */
+    public static Set<String> splitStringWithoutDuplicates(String stringToSplit, String splitter, Boolean deleteWhitespace){
+        if(String.isBlank(splitter)) { throw new UTIL_Exceptions.IllegalArgumentException('Splitter cannot be blank'); }
+        if(String.isBlank(stringToSplit)) { return new Set<String>(); }
+
+        if(deleteWhitespace) { stringToSplit = stringToSplit.deleteWhitespace(); }
+
+        return new Set<String>(stringToSplit.split(splitter));
+    }
+
+    /**
+     * Get Picklist Entry Label for provided Picklist Value
+     *
+     * @param  picklistField Picklist Field
+     * @param  picklistValue Picklist Value
+     * @return               Picklist Label
+     */
+    public static String getPicklistLabel(Schema.SObjectField picklistField, String picklistValue){
+        if(picklistField == null) { throw new UTIL_Exceptions.IllegalArgumentException('picklistField cannot be null'); }
+        
+        for (Schema.PicklistEntry pEntry : picklistField.getDescribe().getPicklistValues()){
+            if(pEntry.getValue() == picklistValue) { return pEntry.getLabel(); }
+        }
+
+        throw new UTIL_Exceptions.IllegalArgumentException('Invalid value for provided picklist field.');
+    }
 }
