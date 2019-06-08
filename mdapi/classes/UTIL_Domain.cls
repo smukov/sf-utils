@@ -4,7 +4,14 @@ public without sharing class UTIL_Domain {
      * Get the domain from which Visualforce Pages are served
      */
     public static String getVisualforceDomain(){
-        return getMyDomain() + '--c.' + getInstance() + '.visual.force.com';
+        String myDomain = getMyDomain();
+        String instance = getInstance();
+       
+        if(myDomain == instance){
+            return 'c.' + instance + '.visual.force.com';
+        }
+
+        return myDomain + '--c.' + instance + '.visual.force.com';
     }
 
     /**

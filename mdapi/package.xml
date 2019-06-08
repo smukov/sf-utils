@@ -10,8 +10,10 @@
   </types>
   <types>
     <name>ApexClass</name>
+    <members>ServerResponse</members>
     <members>UTIL_Domain</members>
     <members>UTIL_Exceptions</members>
+    <members>UTIL_SObject</members>
     <members>UTIL_String</members>
   </types>
   <types>
