@@ -11,7 +11,7 @@ public without sharing class UTIL_Domain {
             return 'c.' + instance + '.visual.force.com';
         }
 
-        return myDomain + '--c.' + instance + '.visual.force.com';
+        return myDomain + '--c.visualforce.com';
     }
 
     /**
